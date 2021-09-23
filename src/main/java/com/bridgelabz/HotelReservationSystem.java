@@ -3,10 +3,6 @@ package com.bridgelabz;
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,7 +21,9 @@ public class HotelReservationSystem {
             int weekdayRate = sc.nextInt();
             System.out.print("Enter Weekend Rate: $");
             int weekendRate = sc.nextInt();
-            Hotel hotelObj = new Hotel(hotelName, weekdayRate, weekendRate);
+            System.out.print("Enter Hotel Rating: ");
+            int hotelRating = sc.nextInt();
+            Hotel hotelObj = new Hotel(hotelName, weekdayRate, weekendRate, hotelRating);
             hotelList.add(hotelObj);
             System.out.println("Do you want to add more Hotels(Y/N or y/n)");
             choice = sc.next().charAt(0);
@@ -69,12 +67,17 @@ public class HotelReservationSystem {
                 minimumCost = hotel.getTotalCost();
         }
         List<String> cheapestListOfHotelName = new ArrayList<>();
+        int maximumRating = 0;
+        String cheapestAndBestRatedHotel = "";
         for (int i = 0; i < hotelList.size(); i++) {
-            if (hotelList.get(i).getTotalCost() == minimumCost)
+            if (hotelList.get(i).getTotalCost() == minimumCost) {
                 cheapestListOfHotelName.add(hotelList.get(i).getHotelName());
-
+                if (hotelList.get(i).hotelRating >= maximumRating) {
+                    maximumRating = hotelList.get(i).hotelRating;
+                    cheapestAndBestRatedHotel = hotelList.get(i).getHotelName();
+                }
+            }
         }
-
         System.out.println("\nCheapest Hotel is: " + cheapestListOfHotelName + " and Total rates $" + minimumCost);
     }
 
