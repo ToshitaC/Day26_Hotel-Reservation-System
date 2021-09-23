@@ -72,14 +72,16 @@ public class HotelReservationSystem {
         for (int i = 0; i < hotelList.size(); i++) {
             if (hotelList.get(i).getTotalCost() == minimumCost)
                 cheapestListOfHotelName.add(hotelList.get(i).getHotelName());
+
         }
-        System.out.println("Cheapest Hotel is: " + cheapestListOfHotelName + " with total cost $" + minimumCost);
+
+        System.out.println("\nCheapest Hotel is: " + cheapestListOfHotelName + " and Total rates $" + minimumCost);
     }
 
     public static void main(String[] args) {
         System.out.println("Adding a Hotel:");
         addHotel();
-        System.out.println("Enter dates[Example: 20NOV2020] for finding cheapest hotel: ");
+        System.out.println("Enter dates[Example: 20Nov2020] for finding cheapest hotel: ");
         getCheapestHotel();
     }
 }
